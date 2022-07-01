@@ -1,5 +1,3 @@
-from turtle import title
-from attr import attrs
 import requests
 from bs4 import BeautifulSoup
 import time
