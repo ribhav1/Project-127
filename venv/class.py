@@ -10,7 +10,7 @@ r = requests.get(START_URL)
 def scrape():
     headers = ['name', 'distance', 'mass', 'radius']
     planet_data = []
-    soup = BeautifulSoup(r.content, 'html.parser')
+    soup = BeautifulSoup(r.text, 'html.parser')
     for tr_tag in soup.find_all("tr"):
         td_tags = tr_tag.find_all('td')
         temp_list = []
@@ -28,10 +28,10 @@ def scrape():
         del e[1]
         del e[2]
         del e[4]
-    print(planet_data)
 
     with open('data.csv', 'w',encoding='utf-8') as f:
         csvwriter = csv.writer(f)
         csvwriter.writerow(headers)
         csvwriter.writerows(planet_data)
+
 scrape()
